@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="../static/img/health.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    *{
+    margin:0;
+    padding:0;
+    font-family: 'Josefin Sans', sans-serif;
+    }
+    html,
+    body,
+    header,
+    #intro {
+    height: 100%;
+    }
+    img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+    </style>
+    <title>Heart disease Prediction</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Diagnostic Tool</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+		  <li class="nav-item active">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/heart">Heart<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/diabetes">Diabetes</a>
+            </li>
+            <li class="nav-item active">	
+              <a class="nav-link" href="/liver">Liver</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--Mask-->
+      <div id="intro" class="container-fluid view ">
+        <h1 class="text-center text-capitalize pt-5">Know your chances of having a heart condition</h1>
+        <hr class="w-75 mx-auto pt-5">
+        <div class="row mb-5">
+          <div class="col-lg-6 col-md-6 col-12 my-auto">
+            <img src="../static/heart.jpg" class="float-left">
+            
+          </div>
+          <div class="col-lg-6 col-md-6 col-12">
+			<form action="{{ url_for('result')}}" method="post">
+			
+				<div class="form-group">
+					<label for="age">Age</label>
+					<input class="form-control" id="age" name = "age" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="age">Gender</label>
+					<select class="form-control" id="sex" name = "sex" required="required" >
+						<option value="1">Male</option>
+						<option value="0">Female</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="cp">Chest Pain Type</label>
+					<select class="form-control" id="cp" name = "cp" required="required" placeholder="Chest Pain Type">
+						<option value="1">Typical Angina</option>
+						<option value="2">Atypical Angina</option>
+						<option value="3">Non-Anginal Pain</option>
+						<option value="4">Asymptomatic</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label for="trestbps">Resting Blood Pressure</label>
+					<input class="form-control" id="trestbps" name = "trestbps" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="chol">Serum cholestoral in mg/dl</label>
+					<input class="form-control" id="chol" name = "chol" required="required" >
+				</div>
+				
+				<div class="form-group">
+                <label for="fbs">Fasting Blood Sugar</label>
+                <select class="form-control" id="fbs" name = "fbs" required="required" placeholder="Fasting Blood Sugar">
+                  <option value="0">Fasting Blood Sugar < 120 mg/dl</option>
+                  <option value="1">Fasting Blood Sugar > 120 mg/dl</option>
+                </select>
+              </div>
+			  
+			  <div class="form-group">
+                <label for="restecg">Resting Electro-cardiographic Result</label>
+                <select class="form-control" type="number" id="restecg" name="restecg" required="required" placeholder="Resting Electro-cardiographic Result">
+                <option value="0">Normal</option>
+                <option value="1">having ST-T wave abnormality</option>
+                <option value="2">showing probable or definite left ventricular hypertrophy</option>
+            	</select>
+              </div>
+			  
+			  <div class="form-group">
+                <label for="thalach">Maximum Heart Rate Achieved</label>
+                <input class="form-control" id="thalach" name = "thalach" required="required" >
+              </div>
+			  
+			  <div class="form-group">
+                <label for="exang">Exercise Induced Angina</label>
+                <select class="form-control" id="exang" name = "exang" required="required" >
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+			
+				
+			  <div class="form-group">
+				<label for="oldpeak">ST depression induced by exercise relative to rest</label>
+				<input class="form-control" id="oldpeak" name = "oldpeak" required="required" >
+			  </div>
+			  
+			  <div class="form-group">
+                <label for="slope">Slope of the peak exercise ST segment</label>
+                <select class="form-control" type="number" id="slope" name="slope" required="required" placeholder="Slope of the peak exercise ST segment">
+                <option value="1">Unsloping</option>
+                <option value="2">Flat</option>
+                <option value="3">Downsloping</option>
+            	</select>
+              </div>
+			  
+			  <div class="form-group">
+                <label for="ca">Number of major vessels colored by flourosopy</label>
+                <select class="form-control" type="number" id="ca" name="ca" required="required" placeholder="Number of major vessels colored by flourosopy">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+				<option value="3">3</option>
+            	</select>
+              </div>
+			  
+			  <div class="form-group">
+                <label for="thal">Thal</label>
+                <select class="form-control" type="number" id="thal" name="thal" required="required" placeholder="thal">
+                <option value="3">Normal</option>
+                <option value="6">Fixed Defect</option>
+                <option value="7">Reversable Defect</option>
+            	</select>
+              </div>
+			  
+			  <button type="submit" class="btn btn-danger">Submit</button>
+				
+			</form>
+		</div>
+	</div>
+</div>
+	
+
+
+
+ <style>
+</style>
+	
+</header>
+</body>

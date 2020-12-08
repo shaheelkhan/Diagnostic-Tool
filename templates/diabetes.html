@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="../static/img/health.ico">
+    <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    *{
+    margin:0;
+    padding:0;
+    font-family: 'Josefin Sans', sans-serif;
+    }
+    html,
+    body,
+    header,
+    #intro {
+    height: 100%;
+    }
+    img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+    </style>
+    <title>Diabetes Prediction</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Diagnostic Tool</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+		  
+            <li class="nav-item active">
+              <a class="nav-link" href="/heart">Heart<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/diabetes">Diabetes</a>
+            </li>
+            <li class="nav-item active">	
+              <a class="nav-link" href="/liver">Liver</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!--Mask-->
+      <div id="intro" class="container-fluid view">
+        <h1 class="text-center text-capitalize pt-5">Know your chances of having diabetes</h1>
+        <hr class="w-75 mx-auto pt-5">
+        <div class="row mb-5">
+          <div class="col-lg-6 col-md-6 col-12 my-auto">
+            <img src="../static/diabetes.jpg" class="float-left">
+            
+          </div>
+          <div class="col-lg-6 col-md-6 col-12">
+			<form action="{{ url_for('result')}}" method="post">
+			
+				<div class="form-group">
+					<label for="Pregnancies">Number of times pregnant</label>
+					<input class="form-control" id="Pregnancies" name = "Pregnancies" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="Glucose">Plasma glucose concentration</label>
+					<input class="form-control" id="Glucose" name = "Glucose" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="BloodPressure">Diastolic blood pressure (mm Hg)</label>
+					<input class="form-control" id="BloodPressure" name = "BloodPressure" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="SkinThickness">Triceps skin fold thickness (mm)</label>
+					<input class="form-control" id="SkinThickness" name = "SkinThickness" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="Insulin">2-Hour serum insulin (mu U/ml)</label>
+					<input class="form-control" id="Insulin" name = "Insulin" required="required" >
+				</div>
+				
+				<div class="form-group">
+					<label for="BMI">Body mass index</label>
+					<input class="form-control" id="BMI" name = "BMI" required="required" >
+				</div
+			  
+			  <div class="form-group">
+                <label for="DiabetesPedigreeFunction">Diabetes pedigree function</label>
+                <input class="form-control" id="DiabetesPedigreeFunction" name = "DiabetesPedigreeFunction" required="required" >
+              </div>
+			  
+			  <div class="form-group">
+				<label for="Age">Age</label>
+				<input class="form-control" id="Age" name = "Age" required="required" >
+			  </div>
+			  
+			  <button type="submit" class="btn btn-danger">Submit</button>
+				
+			</form>
+		</div>
+	</div>
+</div>
+	
+
+
+
+ <style>
+</style>
+	
+</header>
+</body>
